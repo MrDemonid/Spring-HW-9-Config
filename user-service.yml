@@ -1,0 +1,12 @@
+server:
+  port: 9010
+
+spring:
+  application:
+    name: "USER-SERVICE"
+
+  springdoc:
+    show-actuator: false
+    swagger-ui:
+      enabled: true
+      path: /swagger-ui-user.html
