@@ -11,21 +11,32 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: false
+    loadbalancer:
+      retry:
+        enabled: true         # Повторные попытки при сбоях балансировщика          
       routes:
         - id: catalog-service
           uri: lb://CATALOG-SERVICE
           predicates:
             - Path=/catalog/**
             - Path=/api/catalog/**
+          filters:
+            - Retry=5         # Повторить запрос до 5 раз при сбое            
         - id: order-service
           uri: lb://ORDER-SERVICE
           predicates:
             - Path=/api/orders/**
+          filters:
+            - Retry=5         # Повторить запрос до 5 раз при сбое            
         - id: payment-service
           uri: lb://PAYMENT-SERVICE
           predicates:
             - Path=/api/payment/**
+          filters:
+            - Retry=5         # Повторить запрос до 5 раз при сбое            
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
             - Path=/api/user/**
+          filters:
+            - Retry=5         # Повторить запрос до 5 раз при сбое            
