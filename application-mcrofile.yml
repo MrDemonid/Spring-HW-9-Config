@@ -1,0 +1,15 @@
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true  # включение повторных попыток при недоступности сервисов
+      healthCheck:
+        enabled: true  # включение проверки состояния для сервисов        
+eureka:
+  client:
+    service-url:
+      defaultZone:
+        http://localhost:7777/eureka
