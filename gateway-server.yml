@@ -1,0 +1,31 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: "GATEWAY-SERVER"
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: false
+      routes:
+        - id: catalog-service
+          uri: lb://CATALOG-SERVICE
+          predicates:
+            - Path=/catalog/**
+            - Path=/api/catalog/**
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/api/orders/**
+        - id: payment-service
+          uri: lb://PAYMENT-SERVICE
+          predicates:
+            - Path=/api/payment/**
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/user/**
