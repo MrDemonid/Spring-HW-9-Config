@@ -1,0 +1,11 @@
+server:
+  port: 9015
+spring:
+  application:
+    name: "CATALOG-SERVICE"
+
+  springdoc:
+    show-actuator: false
+    swagger-ui:
+      enabled: true
+      path: /swagger-ui-catalog.html
