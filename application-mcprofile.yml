@@ -5,11 +5,18 @@ spring:
   cloud:
     loadbalancer:
       retry:
-        enabled: true  # включение повторных попыток при недоступности сервисов
+        enabled: true                        # включение повторных попыток при недоступности сервисов
       healthCheck:
-        enabled: true  # включение проверки состояния для сервисов        
+        enabled: true                        # включение проверки состояния для сервисов        
 eureka:
   client:
     service-url:
       defaultZone:
         http://localhost:7777/eureka
+    register-with-eureka: true                # Регистрация клиента в Eureka Server
+    fetch-registry: true                      # Извлечение реестра из Eureka Server
+    retry-on-connect-errors: true             # Повторные подключения к Eureka при сбоях
+  instance:
+    prefer-ip-address: false                  # Использовать IP-адрес вместо имени хоста
+    lease-renewal-interval-in-seconds: 10     # Интервал отправки heartbeats
+    lease-expiration-duration-in-seconds: 30  # Таймаут для истечения lease (сердцебиений)
